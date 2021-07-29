@@ -1,0 +1,1 @@
+Переделать REST API на graphql
