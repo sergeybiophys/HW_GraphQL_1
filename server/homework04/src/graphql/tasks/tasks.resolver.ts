@@ -17,18 +17,18 @@ export class TasksResolver {
     return this.tasksService.allTasks();
   }
 
-  @Query(() => [TaskDto])
+  @Query(() => TaskDto)
   async getTaskById(
     @Args('body') body: TaskByIdInputRequest,
   ): Promise<TaskDto> {
     return this.tasksService.getTaskById(body.id);
   }
 
-  @Query(() => [TaskDto])
+  @Query(() => TaskDto)
   async getTaskByTag(
     @Args('body') body: TaskByTagInputRequest,
   ): Promise<TaskDto> {
-    return this.tasksService.getTaskByTag(body.tag);
+    return this.tasksService.getTaskByTag(body);
   }
 
   @Mutation(() => TaskDto)
@@ -39,9 +39,14 @@ export class TasksResolver {
   }
 
   @Mutation(() => TaskDto)
-  async updateProduct(
+  async updateTask(
     @Args('body') body: UpdateTaskInputRequest,
   ): Promise<TaskDto> {
     return this.tasksService.updateTask(body);
+  }
+
+  @Mutation(()=>[TaskDto])
+  async deleteTask(@Args('id') id: number): Promise<TaskDto[]> {
+       return this.tasksService.deleteTask(id);
   }
 }

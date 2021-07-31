@@ -1,5 +1,6 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsDate, IsNumber, IsString } from 'class-validator';
+import {DateTimeResolver, DateTimeTypeDefinition} from 'graphql-scalars'
 
 @InputType()
 export class TaskByIdInputRequest {

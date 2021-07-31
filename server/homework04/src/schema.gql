@@ -19,8 +19,8 @@ scalar DateTime
 
 type Query {
   getAllTasks: [TaskDto!]!
-  getTaskById(body: TaskByIdInputRequest!): [TaskDto!]!
-  getTaskByTag(body: TaskByTagInputRequest!): [TaskDto!]!
+  getTaskById(body: TaskByIdInputRequest!): TaskDto!
+  getTaskByTag(body: TaskByTagInputRequest!): TaskDto!
 }
 
 input TaskByIdInputRequest {
@@ -33,7 +33,8 @@ input TaskByTagInputRequest {
 
 type Mutation {
   createNewTask(body: CreateTaskInputRequest!): TaskDto!
-  updateProduct(body: UpdateTaskInputRequest!): TaskDto!
+  updateTask(body: UpdateTaskInputRequest!): TaskDto!
+  deleteTask(id: Float!): [TaskDto!]!
 }
 
 input CreateTaskInputRequest {
