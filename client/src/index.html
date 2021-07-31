@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Font Awesome -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+        rel="stylesheet"
+        />
+
+        <!-- MDB -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+        ></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div>
+        <div>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                  <div style="display: flex;">
+                    <div>
+                      <a class="navbar-brand">ToDo</a>
+                    </div>
+                    <div>
+                      <a class="navbar-brand">Home</a>
+                    </div>
+                    <!-- <div>
+                      <a class="navbar-brand" href="index3.html">Mod</a>
+                    </div> -->
+
+                  </div>
+                  <!-- <a class="navbar-brand" href="index2.html">Create</a> -->
+                  <form class="d-flex">
+                    <input class="form-control me-2" id="search-form"  type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="button" id="send-query"  onclick="search()">Search</button>
+                    <!-- <a class="btn btn-outline-success" type="button"  id="send-query"  onclick="btnSearchClick()">Search</a> -->
+                  </form>
+                </div>
+              </nav>
+        </div>
+        <div style="display: flex; ">
+          <div style="display: flex; width: 80%; flex-direction: column;">
+            <div id="header" style=" display: flex; flex-wrap: wrap; width: 100%; height: 50px; background-color: rgb(202, 201, 201);">
+              <div>Tag</div>
+              <div>Comment</div>
+              <div>Deadline</div>
+              <div>
+                <a class="btn btn-primary" style="background-color: #25d366;" href="#!" role="button"
+                ><i class="fas fa-sync" onclick="get()"></i></a>
+              </div>
+  
+            </div>
+              <div id="main">
+  
+                
+      
+          
+              </div>
+          </div>
+ 
+            <div id="btn-group" style="width: 20%; display: flex; flex-direction: column; border: 1px dotted rgb(240, 234, 234) ; background-color: rgb(202, 201, 201);">
+              <div style="width: 100%; margin-top: 26em;">
+                <a type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" href="index2.html" style="width: 100%;">
+                  Create
+                 
+              </a>
+              </div>
+              <div style="width: 100%;">
+                <button type="button" class="btn btn-outline-dark" style="width: 100%;" data-mdb-ripple-color="dark" onclick="test()">
+                  Show All
+                </button>
+              </div>
+
+
+                  <!-- <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark">
+                    Find
+                  </button>
+                  <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark">
+                    Delete
+                  </button> -->
+            </div>
+          
+              
+
+        </div>
+        <div>
+            <footer class="text-center text-white" style="background-color: #f1f1f1;">
+                <!-- Grid container -->
+                <div class="container pt-4">
+                  <!-- Section: Social media -->
+                  <section class="mb-4">
+                    <!-- Facebook -->
+                    <a
+                      class="btn btn-link btn-floating btn-lg text-dark m-1"
+                      href="#!"
+                      role="button"
+                      data-mdb-ripple-color="dark"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+              
+                    <!-- Twitter -->
+                    <a
+                      class="btn btn-link btn-floating btn-lg text-dark m-1"
+                      href="#!"
+                      role="button"
+                      data-mdb-ripple-color="dark"
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+              
+                    <!-- Google -->
+                    <a
+                      class="btn btn-link btn-floating btn-lg text-dark m-1"
+                      href="#!"
+                      role="button"
+                      data-mdb-ripple-color="dark"
+                      ><i class="fab fa-google"></i
+                    ></a>
+              
+                    <!-- Instagram -->
+                    <a
+                      class="btn btn-link btn-floating btn-lg text-dark m-1"
+                      href="#!"
+                      role="button"
+                      data-mdb-ripple-color="dark"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+              
+                    <!-- Linkedin -->
+                    <a
+                      class="btn btn-link btn-floating btn-lg text-dark m-1"
+                      href="#!"
+                      role="button"
+                      data-mdb-ripple-color="dark"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                    <!-- Github -->
+                    <a
+                      class="btn btn-link btn-floating btn-lg text-dark m-1"
+                      href="#!"
+                      role="button"
+                      data-mdb-ripple-color="dark"
+                      ><i class="fab fa-github"></i
+                    ></a>
+                  </section>
+                  <!-- Section: Social media -->
+                </div>
+                <!-- Grid container -->
+              
+                <!-- Copyright -->
+                <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                  ©  2021 Copyright VPU911:
+                  <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+                <!-- Copyright -->
+              </footer>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- <script src="./js/script.js"></script> -->
+
+    <!-- <script src="./main.ts"></script> -->
+    <script src="/main.bundle.js"></script>
+    <!-- <script src="./main.bundle.js"></script> -->
+    <!-- <script src="./js/script.js"></script> -->
+</body>
+</html>
