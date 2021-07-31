@@ -3,6 +3,7 @@ import {AxiosResponse} from 'axios';
 const axios = require('axios');
 import { environment } from '../environment/environment';
 
+
 // (function () {
 //   console.log('hello');
 //      //get();
@@ -13,13 +14,14 @@ import { environment } from '../environment/environment';
 // }
 // )
 
-function test() {
-  console.log('hello ');
-}
+document.getElementById('show-all').addEventListener('click', ()=> {
+  console.log('hello');
+  get();
+});
 
 //test();
 
-(function ()  {
+function get()  {
   axios({
     url: environment.API_URL,
     method: 'post',
@@ -44,7 +46,7 @@ function test() {
     }
     //return result.data.data.getAllTasks;
   });
-}())
+}
   
 function addTask(task: object) {
   let card = document.createElement('div');
