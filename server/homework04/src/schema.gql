@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type TaskDto {
+  id: Float!
+  tag: String!
+  comment: String!
+  creation: DateTime!
+  deadline: DateTime!
+  priority: Float!
+  status: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  getAllTasks: [TaskDto!]!
+  getTaskById(body: TaskByIdInputRequest!): [TaskDto!]!
+  getTaskByTag(body: TaskByTagInputRequest!): [TaskDto!]!
+}
+
+input TaskByIdInputRequest {
+  id: Float!
+}
+
+input TaskByTagInputRequest {
+  tag: String!
+}
+
+type Mutation {
+  createNewTask(body: CreateTaskInputRequest!): TaskDto!
+  updateProduct(body: UpdateTaskInputRequest!): TaskDto!
+}
+
+input CreateTaskInputRequest {
+  tag: String!
+  comment: String!
+  creation: DateTime!
+  deadline: DateTime!
+  priority: Float!
+  status: String!
+}
+
+input UpdateTaskInputRequest {
+  tag: String!
+  comment: String!
+  creation: DateTime!
+  deadline: DateTime!
+  priority: Float!
+  status: String!
+  id: Float!
+}

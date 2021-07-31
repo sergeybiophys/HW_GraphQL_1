@@ -20,14 +20,14 @@ export class TasksResolver {
   @Query(() => [TaskDto])
   async getTaskById(
     @Args('body') body: TaskByIdInputRequest,
-  ): Promise<TaskDto[]> {
+  ): Promise<TaskDto> {
     return this.tasksService.getTaskById(body.id);
   }
 
   @Query(() => [TaskDto])
   async getTaskByTag(
     @Args('body') body: TaskByTagInputRequest,
-  ): Promise<TaskDto[]> {
+  ): Promise<TaskDto> {
     return this.tasksService.getTaskByTag(body.tag);
   }
 
