@@ -21,7 +21,7 @@ export class TasksResolver {
   async getTaskById(
     @Args('body') body: TaskByIdInputRequest,
   ): Promise<TaskDto> {
-    return this.tasksService.getTaskById(body.id);
+    return this.tasksService.getTaskById(body._id);
   }
 
   @Query(() => TaskDto)
@@ -33,7 +33,7 @@ export class TasksResolver {
 
   @Mutation(() => TaskDto)
   async createNewTask(
-    @Args('body') body: CreateTaskInputRequest,
+    @Args('body')  body: CreateTaskInputRequest,
   ): Promise<TaskDto> {
     return this.tasksService.createTask(body);
   }

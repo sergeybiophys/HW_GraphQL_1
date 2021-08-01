@@ -6,7 +6,7 @@ import {DateTimeResolver, DateTimeTypeDefinition} from 'graphql-scalars'
 export class TaskByIdInputRequest {
   @Field()
   @IsNumber()
-  readonly id: number;
+  readonly _id: number;
 }
 
 
@@ -19,6 +19,9 @@ export class TaskByTagInputRequest {
 
 @InputType()
 export class CreateTaskInputRequest {
+  @Field()
+  @IsNumber()
+  readonly _id: number;
   @Field()
   @IsString()
   readonly tag: string;
@@ -43,5 +46,5 @@ export class CreateTaskInputRequest {
 export class UpdateTaskInputRequest extends CreateTaskInputRequest{
   @Field()
   @IsNumber()
-  readonly id: number;
+  readonly _id: number;
 }

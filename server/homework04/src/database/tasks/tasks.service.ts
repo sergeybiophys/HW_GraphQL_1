@@ -7,13 +7,14 @@ import { Repository } from 'typeorm';
 // import {InjectRepository} from '@nestjs/typeorm';
 
 export interface Task  {
-    id?: number;
+     _id: number;
     tag: string;
     comment: string;
     creation: Date;
     deadline: Date;
     priority: number;
     status: string;
+ 
 }
 
 @Injectable() 
@@ -28,7 +29,7 @@ export class TasksService  {
 
     static tasks: Task[] = [
         {
-            id: 1,
+            _id: 1,
             tag: 'task1',
             comment: 'task1',
             creation: new Date(),
@@ -37,7 +38,7 @@ export class TasksService  {
             status: 'A',
         },
         {
-            id: 2,
+            _id: 2,
             tag: 'task2',
             comment: 'task2',
             creation: new Date(),
@@ -46,7 +47,7 @@ export class TasksService  {
             status: 'C',
         },
         {
-            id: 3,
+            _id: 3,
             tag: 'task3',
             comment: 'task3',
             creation: new Date(),
@@ -62,7 +63,7 @@ export class TasksService  {
     }
 
     async getTaskById(id:number): Promise<Task> {
-        return TasksService.tasks.find((t) => t.id===id,);
+        return TasksService.tasks.find((t) => t._id===id,);
     }
 
     async getTaskByTag(task: {tag: string;}): Promise<Task> {
@@ -71,7 +72,7 @@ export class TasksService  {
 
     async updateTask(task:Task): Promise<Task> {
         const srchTask = TasksService.tasks.find(
-            (t) =>t.id===task.id,
+            (t) =>t.tag===task.tag,
         )
         if(!srchTask) {
             throw new Error('Task not found');
@@ -88,9 +89,9 @@ export class TasksService  {
 
     async createTask(task: Task): Promise<Task> {
         const newId = TasksService.tasks.length?
-        TasksService.tasks[TasksService.tasks.length-1].id+1:1;
+        TasksService.tasks[TasksService.tasks.length-1]._id+1:1;
         const newTask: Task = {
-            id: Number(newId),
+            _id: Number(newId),
             ...task,
         };
         TasksService.tasks.push(newTask);

@@ -58,6 +58,8 @@ function get()  {
       // console.log(result.data.data.getAllTasks[i].tag);
       addTask(result.data.data.getAllTasks[i]);
 
+      console.log(result.data.data.getAllTasks[i]._id);
+
     }
     //return result.data.data.getAllTasks;
   });
