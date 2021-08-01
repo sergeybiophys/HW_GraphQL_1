@@ -5,9 +5,15 @@ import { IsString, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class TaskDto {
     @Field()
+<<<<<<< HEAD
     @IsNumber()
     @IsNotEmpty()
      _id?:number;
+=======
+    // @IsNumber()
+    // @IsNotEmpty()
+     _id:number;
+>>>>>>> 43dbc8422a18077bcdaa05bf9415d2bd29cd760d
     @Field()
     tag: string;
     @Field()
