@@ -57,7 +57,7 @@
                   <!-- <a class="navbar-brand" href="index2.html">Create</a> -->
                   <form class="d-flex">
                     <input class="form-control me-2" id="search-form"  type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="button" id="send-query"  onclick="search()">Search</button>
+                    <button class="btn btn-outline-success" type="button" id="send-query">Search</button>
                     <!-- <a class="btn btn-outline-success" type="button"  id="send-query"  onclick="btnSearchClick()">Search</a> -->
                   </form>
                 </div>
@@ -71,7 +71,7 @@
               <div>Deadline</div>
               <div>
                 <a class="btn btn-primary" style="background-color: #25d366;" href="#!" role="button"
-                ><i class="fas fa-sync" onclick="get()"></i></a>
+                ><i class="fas fa-sync" ></i></a>
               </div>
   
             </div>
@@ -84,11 +84,43 @@
           </div>
  
             <div id="btn-group" style="width: 20%; display: flex; flex-direction: column; border: 1px dotted rgb(240, 234, 234) ; background-color: rgb(202, 201, 201);">
-              <div style="width: 100%; margin-top: 26em;">
-                <a type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" href="index2.html" style="width: 100%;">
+
+              <div id="fill-data-task">
+                <hr>
+                <h4 style="margin-left: 4em;">Fill  form: </h4>
+                <hr>
+                <div class="form-outline" style="margin-top: 1em;">
+                  <input type="text" id="tag-select" class="form-control" />
+                  <label class="form-label" for="typeText">Tag</label>
+                </div>
+                <hr>
+                <div class="form-outline">
+                  <input type="text" id="comment-select" class="form-control" />
+                  <label class="form-label" for="typeText">Comment</label>
+                </div>
+                <hr>
+                <input id="deadline-select" type="date" style=" width: 100%;">
+                <hr>
+
+                <select name="priority" id="priority-select" style=" width: 100%;">
+                  <option value="3">Low</option>
+                  <option value="2">Middle</option>
+                  <option value="1">High</option>
+                </select>
+                <hr>
+                <button id="create-btn" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style=" width: 100%;"
+                >
                   Create
                  
-              </a>
+                </button>
+                <hr>
+              </div>
+
+              <div style="width: 100%; margin-top: 26em;">
+                <!-- <a  type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" href="index2.html" style="width: 100%;">
+                  Create
+                 
+              </a> -->
               </div>
               <div style="width: 100%;">
                 <button id="show-all" type="button" class="btn btn-outline-dark" style="width: 100%;" data-mdb-ripple-color="dark" ">

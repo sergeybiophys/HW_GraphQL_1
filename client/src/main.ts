@@ -2,8 +2,9 @@ import {AxiosResponse} from 'axios';
 
 const axios = require('axios');
 import { environment } from '../environment/environment';
+// import {Task} from '../../server/homework04/src/database/tasks/tasks.service';
 
-
+var mycount = 0;
 // (function () {
 //   console.log('hello');
 //      //get();
@@ -16,12 +17,25 @@ import { environment } from '../environment/environment';
 
 document.getElementById('show-all').addEventListener('click', ()=> {
   console.log('hello');
+
   get();
 });
 
+document.getElementById('send-query').addEventListener('click', ()=> {
+  console.log('search');
+  let tag = (<HTMLInputElement>document.getElementById('search-form')).value;
+  console.log(tag);
+  getByTag(tag);
+})
+
+document.getElementById('create-btn').addEventListener('click', ()=>{
+  console.log('create');
+  createTask();
+})
 //test();
 
 function get()  {
+  clearBlockFromChild('main');
   axios({
     url: environment.API_URL,
     method: 'post',
@@ -43,12 +57,162 @@ function get()  {
     {
       // console.log(result.data.data.getAllTasks[i].tag);
       addTask(result.data.data.getAllTasks[i]);
+
     }
     //return result.data.data.getAllTasks;
   });
 }
   
-function addTask(task: object) {
+
+
+
+function getByTag(tag: string) {
+  axios({
+    url: environment.API_URL,
+    method: 'post',
+    data: {
+      query: `
+          query GetTaskByTag {
+            getTaskByTag(body:{tag:"${tag}"}){
+              tag
+              comment
+              deadline
+            }
+          }
+        `
+    }
+  }).then((result:AxiosResponse) => {
+    console.log(result.data.data.getAllTasks)
+ 
+      clearBlockFromChild('main');
+
+      console.log(result.data.data.getTaskByTag);
+
+      addTask(result.data.data.getTaskByTag);
+
+  });
+}
+
+function createTask(){
+
+  let tag = (<HTMLInputElement>document.getElementById('tag-select')).value;
+    let comment = (<HTMLInputElement>document.getElementById('comment-select')).value;
+    let deadline = (<HTMLInputElement>document.getElementById('deadline-select')).value;
+    let priority = (<HTMLInputElement>document.getElementById('priority-select')).value;
+    console.log(tag);
+    console.log(comment);
+    console.log(deadline);
+    console.log(priority);
+
+  axios({
+    url: environment.API_URL,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'},
+    data: {
+      query: 
+      `mutation CreateTask{
+        createNewTask(body:{
+          tag: "${tag}",
+          comment: "${comment}",
+          creation: "${Date.now()}",
+          deadline: "${deadline}",
+          priority: ${priority},
+          status: "n/a"
+        }){
+          id
+          tag
+          comment
+          creation
+          deadline
+          priority
+          status
+        }
+      }
+        `
+    }
+
+    }).then((result:AxiosResponse) => {
+        console.log(result.data.data.getAllTasks)
+     
+          console.log(result.data.data.createNewTask);
+      });
+  
+}
+
+
+function updateTask(){
+
+  let tag = (<HTMLInputElement>document.getElementById('tag-select')).value;
+    let comment = (<HTMLInputElement>document.getElementById('comment-select')).value;
+    let deadline = (<HTMLInputElement>document.getElementById('deadline-select')).value;
+    let priority = (<HTMLInputElement>document.getElementById('priority-select')).value;
+    console.log(tag);
+    console.log(comment);
+    console.log(deadline);
+    console.log(priority);
+
+  axios({
+    url: environment.API_URL,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'},
+    data: {
+      query: 
+      `mutation CreateTask{
+        createNewTask(body:{
+          tag: "${tag}",
+          comment: "${comment}",
+          creation: "${Date.now()}",
+          deadline: "${deadline}",
+          priority: ${priority},
+          status: "n/a"
+        }){
+          id
+          tag
+          comment
+          creation
+          deadline
+          priority
+          status
+        }
+      }
+        `
+    }
+
+    }).then((result:AxiosResponse) => {
+
+          console.log(result.data.data.createNewTask);
+      });
+  
+}
+
+function deleteTask(tag:string){
+
+
+  axios({
+    url: environment.API_URL,
+    method: 'post',
+
+    data: {
+      query: 
+      `mutation DeleteTask {
+        deleteTask(tag:"${tag}"){
+          id
+          tag
+        }
+      }
+        `
+    }
+
+    }).then((result:AxiosResponse) => {
+          console.log(result.data.data.deleteTask);
+      });
+  
+}
+
+
+function addTask(task: any) {
   let card = document.createElement('div');
   card.id = 'task-card';
   card.className = 'task-card';
@@ -77,10 +241,14 @@ function addTask(task: object) {
   div5.appendChild(btnUpdate);
   div5.appendChild(btnDlt);
 
-  // btnDlt.class=task.id;
+  //btnDlt.class=task.id;
   // btnDlt.onclick = function() {
-  //     //dropById(Number(task.id));
+  //    deleteTask(Number(task.id));
   // }
+  btnDlt.addEventListener('click',()=>{
+    console.log(`delete + ${task.tag} `);
+    deleteTask(task.tag);
+  })
   // btnUpdate.onclick = function() {
   //    // updateById(Number(task.id));
   // }
@@ -119,11 +287,20 @@ function addTask(task: object) {
 
   tag.innerText = task.tag;
   comment.innerText=task.comment;
-  deadline.innerText=task.deadline;
+  let str = String(task.deadline.toString());
+
+  deadline.innerText=str.substr(0,10);
 
   document.getElementById('main').appendChild(card);
 
 
+}
+
+function clearBlockFromChild(blockname:string) {
+  const myNode = document.getElementById(blockname);
+  while(myNode.lastElementChild) {
+      myNode.removeChild(myNode.lastElementChild);
+  }
 }
 
 

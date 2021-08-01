@@ -46,7 +46,7 @@ export class TasksResolver {
   }
 
   @Mutation(()=>[TaskDto])
-  async deleteTask(@Args('id') id: number): Promise<TaskDto[]> {
-       return this.tasksService.deleteTask(id);
+  async deleteTask(@Args('tag') tag: string): Promise<TaskDto[]> {
+       return this.tasksService.deleteTask(tag);
   }
 }

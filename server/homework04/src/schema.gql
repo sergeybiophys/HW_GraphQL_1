@@ -34,7 +34,7 @@ input TaskByTagInputRequest {
 type Mutation {
   createNewTask(body: CreateTaskInputRequest!): TaskDto!
   updateTask(body: UpdateTaskInputRequest!): TaskDto!
-  deleteTask(id: Float!): [TaskDto!]!
+  deleteTask(tag: String!): [TaskDto!]!
 }
 
 input CreateTaskInputRequest {

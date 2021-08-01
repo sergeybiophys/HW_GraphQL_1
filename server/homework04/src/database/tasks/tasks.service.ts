@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 // import {Repository} from 'typeorm';
 // import {InjectRepository} from '@nestjs/typeorm';
 
-interface Task  {
+export interface Task  {
     id?: number;
     tag: string;
     comment: string;
@@ -98,8 +98,8 @@ export class TasksService  {
     }
 
  
-    async deleteTask(id:number): Promise<Task[]>{
-       let ind = TasksService.tasks.findIndex((t) => t.id === id);
+    async deleteTask(tag:string): Promise<Task[]>{
+       let ind = TasksService.tasks.findIndex((t) => t.tag === tag);
        return TasksService.tasks.splice(ind,1);
     }
 }
