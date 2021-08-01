@@ -21,6 +21,12 @@ document.getElementById('show-all').addEventListener('click', ()=> {
   get();
 });
 
+document.getElementById('refresh').addEventListener('click', ()=> {
+  console.log('hello2');
+
+  get();
+});
+
 document.getElementById('send-query').addEventListener('click', ()=> {
   console.log('search');
   let tag = (<HTMLInputElement>document.getElementById('search-form')).value;
@@ -144,7 +150,7 @@ function createTask(){
         console.log(result.data.data.getAllTasks)
      
           console.log(result.data.data.createNewTask);
-          get();
+          // get();
       });
   
 }
