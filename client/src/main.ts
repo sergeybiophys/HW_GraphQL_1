@@ -31,6 +31,12 @@ document.getElementById('send-query').addEventListener('click', ()=> {
 document.getElementById('create-btn').addEventListener('click', ()=>{
   console.log('create');
   createTask();
+
+})
+
+document.getElementById('update-btn').addEventListener('click', ()=>{
+  console.log('update');
+  updateTask()
 })
 //test();
 
@@ -43,7 +49,7 @@ function get()  {
       query: `
       query GetAllTask {
               getAllTasks {
-
+                      _id
                       tag
                       comment
                       deadline
@@ -57,6 +63,8 @@ function get()  {
     {
       // console.log(result.data.data.getAllTasks[i].tag);
       addTask(result.data.data.getAllTasks[i]);
+
+      console.log(result.data.data.getAllTasks[i]._id);
 
     }
     //return result.data.data.getAllTasks;
@@ -120,7 +128,7 @@ function createTask(){
           priority: ${priority},
           status: "n/a"
         }){
-          id
+          _id
           tag
           comment
           creation
@@ -136,17 +144,26 @@ function createTask(){
         console.log(result.data.data.getAllTasks)
      
           console.log(result.data.data.createNewTask);
+          get();
       });
   
 }
 
+function clickUpdate(id:number){
+  (<HTMLInputElement>document.getElementById('form-id')).innerText="";
+  document.getElementById('fill-data-task').style.display='none';
+  document.getElementById('form-id').innerText=id.toString();
+  document.getElementById('fill-data-task-up').style.display = 'block';
+}
 
 function updateTask(){
-
-  let tag = (<HTMLInputElement>document.getElementById('tag-select')).value;
-    let comment = (<HTMLInputElement>document.getElementById('comment-select')).value;
-    let deadline = (<HTMLInputElement>document.getElementById('deadline-select')).value;
-    let priority = (<HTMLInputElement>document.getElementById('priority-select')).value;
+let id = (<HTMLInputElement>document.getElementById('form-id')).innerText;
+  let tag = (<HTMLInputElement>document.getElementById('tag-select-up')).value;
+    let comment = (<HTMLInputElement>document.getElementById('comment-select-up')).value;
+    let deadline = (<HTMLInputElement>document.getElementById('deadline-select-up')).value;
+    let priority = (<HTMLInputElement>document.getElementById('priority-select-up')).value;
+        
+    console.log(id)
     console.log(tag);
     console.log(comment);
     console.log(deadline);
@@ -159,16 +176,17 @@ function updateTask(){
       'Content-Type': 'application/json; charset=UTF-8'},
     data: {
       query: 
-      `mutation CreateTask{
-        createNewTask(body:{
+      `mutation UpdateTask{
+        updateTask(body:{
+          _id: ${Number(id)},
           tag: "${tag}",
           comment: "${comment}",
           creation: "${Date.now()}",
           deadline: "${deadline}",
           priority: ${priority},
-          status: "n/a"
+          status: "A"
         }){
-          id
+          _id
           tag
           comment
           creation
@@ -182,12 +200,19 @@ function updateTask(){
 
     }).then((result:AxiosResponse) => {
 
-          console.log(result.data.data.createNewTask);
+      (<HTMLInputElement>document.getElementById('form-id')).innerText='';
+     (<HTMLInputElement>document.getElementById('tag-select')).value='';
+     (<HTMLInputElement>document.getElementById('comment-select')).value='';
+      document.getElementById('fill-data-task').style.display='block';
+      document.getElementById('fill-data-task-up').style.display = 'none';
+      get();
+
+          console.log(result.data.data.updateTask);
       });
   
 }
 
-function deleteTask(tag:string){
+function deleteTask(id:number){
 
 
   axios({
@@ -197,8 +222,8 @@ function deleteTask(tag:string){
     data: {
       query: 
       `mutation DeleteTask {
-        deleteTask(tag:"${tag}"){
-          id
+        deleteTask(id:${id}){
+          _id
           tag
         }
       }
@@ -246,12 +271,15 @@ function addTask(task: any) {
   //    deleteTask(Number(task.id));
   // }
   btnDlt.addEventListener('click',()=>{
-    console.log(`delete + ${task.tag} `);
-    deleteTask(task.tag);
+    console.log(`delete + ${task._id} `);
+    deleteTask(task._id);
+    get();
   })
-  // btnUpdate.onclick = function() {
-  //    // updateById(Number(task.id));
-  // }
+  btnUpdate.addEventListener('click',()=>{
+    console.log(`update + ${task._id} `);
+    clickUpdate(task._id);
+    get();
+  })
   // document.getElementById('helph6').innerText=task.id;
   let i = document.createElement('i');
   i.id = 'dltIcon';

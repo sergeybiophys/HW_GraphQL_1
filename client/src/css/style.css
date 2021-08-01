@@ -95,6 +95,13 @@
   background-color: beige;
   font-size: 1.3em;
 }
+#fill-data-task-up {
+  width: 100%;
+  margin: 0 auto;
+  background-color: beige;
+  font-size: 1.3em;
+  display: none;
+}
 
 #bth-group {
 

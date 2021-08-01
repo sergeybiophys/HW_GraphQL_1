@@ -1,10 +1,13 @@
 import { Field, ID,  ObjectType } from '@nestjs/graphql';
+import { IsString, IsNumber, IsNotEmpty } from 'class-validator';
 
 @ObjectType()
 
 export class TaskDto {
     @Field()
-    readonly id?:number;
+    @IsNumber()
+    @IsNotEmpty()
+     _id?:number;
     @Field()
     tag: string;
     @Field()

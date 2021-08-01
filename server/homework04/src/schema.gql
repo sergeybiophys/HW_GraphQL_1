@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type TaskDto {
-  id: Float!
+  _id: Float!
   tag: String!
   comment: String!
   creation: DateTime!
@@ -24,7 +24,7 @@ type Query {
 }
 
 input TaskByIdInputRequest {
-  id: Float!
+  _id: Float!
 }
 
 input TaskByTagInputRequest {
@@ -34,7 +34,7 @@ input TaskByTagInputRequest {
 type Mutation {
   createNewTask(body: CreateTaskInputRequest!): TaskDto!
   updateTask(body: UpdateTaskInputRequest!): TaskDto!
-  deleteTask(tag: String!): [TaskDto!]!
+  deleteTask(id: Float!): [TaskDto!]!
 }
 
 input CreateTaskInputRequest {
@@ -53,5 +53,5 @@ input UpdateTaskInputRequest {
   deadline: DateTime!
   priority: Float!
   status: String!
-  id: Float!
+  _id: Float!
 }

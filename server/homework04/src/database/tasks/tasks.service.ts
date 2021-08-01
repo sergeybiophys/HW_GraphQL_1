@@ -7,13 +7,15 @@ import { Repository } from 'typeorm';
 // import {InjectRepository} from '@nestjs/typeorm';
 
 export interface Task  {
-    id?: number;
+    readonly _id?: number;
     tag: string;
     comment: string;
     creation: Date;
     deadline: Date;
     priority: number;
     status: string;
+
+ 
 }
 
 @Injectable() 
@@ -28,29 +30,30 @@ export class TasksService  {
 
     static tasks: Task[] = [
         {
-            id: 1,
+             _id: 1,
             tag: 'task1',
             comment: 'task1',
-            creation: new Date(),
-            deadline: new Date(),
+            creation: new Date('2000-01-01'),
+            deadline: new Date('2000-01-01'),
             priority: 1,
             status: 'A',
+  
         },
         {
-            id: 2,
+            _id: 2,
             tag: 'task2',
             comment: 'task2',
-            creation: new Date(),
-            deadline: new Date(),
+            creation: new Date('2000-01-01'),
+            deadline: new Date('2000-01-01'),
             priority: 2,
             status: 'C',
         },
         {
-            id: 3,
+            _id: 3,
             tag: 'task3',
             comment: 'task3',
-            creation: new Date(),
-            deadline: new Date(),
+            creation: new Date('2000-01-01'),
+            deadline: new Date('2000-01-01'),
             priority: 3,
             status: 'N/A',
         },
@@ -62,7 +65,7 @@ export class TasksService  {
     }
 
     async getTaskById(id:number): Promise<Task> {
-        return TasksService.tasks.find((t) => t.id===id,);
+        return TasksService.tasks.find((t) => t._id===id,);
     }
 
     async getTaskByTag(task: {tag: string;}): Promise<Task> {
@@ -71,7 +74,7 @@ export class TasksService  {
 
     async updateTask(task:Task): Promise<Task> {
         const srchTask = TasksService.tasks.find(
-            (t) =>t.id===task.id,
+            (t) =>t._id===task._id,
         )
         if(!srchTask) {
             throw new Error('Task not found');
@@ -88,9 +91,9 @@ export class TasksService  {
 
     async createTask(task: Task): Promise<Task> {
         const newId = TasksService.tasks.length?
-        TasksService.tasks[TasksService.tasks.length-1].id+1:1;
+        TasksService.tasks[TasksService.tasks.length-1]._id+1:1;
         const newTask: Task = {
-            id: Number(newId),
+            _id: Number(newId),
             ...task,
         };
         TasksService.tasks.push(newTask);
@@ -98,8 +101,8 @@ export class TasksService  {
     }
 
  
-    async deleteTask(tag:string): Promise<Task[]>{
-       let ind = TasksService.tasks.findIndex((t) => t.tag === tag);
+    async deleteTask(id:number): Promise<Task[]>{
+       let ind = TasksService.tasks.findIndex((t) => t._id === id);
        return TasksService.tasks.splice(ind,1);
     }
 }
