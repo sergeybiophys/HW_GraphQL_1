@@ -55,8 +55,4 @@ input UpdateTaskInputRequest {
   deadline: DateTime!
   priority: Float!
   status: String!
-<<<<<<< HEAD
-  _id: Float!
-=======
->>>>>>> 43dbc8422a18077bcdaa05bf9415d2bd29cd760d
 }

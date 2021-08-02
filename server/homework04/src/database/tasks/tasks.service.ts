@@ -7,28 +7,16 @@ import { Repository } from 'typeorm';
 // import {InjectRepository} from '@nestjs/typeorm';
 
 export interface Task  {
-<<<<<<< HEAD
     readonly _id?: number;
-=======
-     _id: number;
->>>>>>> 43dbc8422a18077bcdaa05bf9415d2bd29cd760d
     tag: string;
     comment: string;
     creation: Date;
     deadline: Date;
     priority: number;
     status: string;
-<<<<<<< HEAD
-
-=======
->>>>>>> 43dbc8422a18077bcdaa05bf9415d2bd29cd760d
- 
 }
 
-@Injectable() 
 export class TasksService  {
-
-    // consructor(
     // @InjectRepository(Task)
     // private taskRepository: Repository<Task>,
     // ) {} 
@@ -37,11 +25,7 @@ export class TasksService  {
 
     static tasks: Task[] = [
         {
-<<<<<<< HEAD
              _id: 1,
-=======
-            _id: 1,
->>>>>>> 43dbc8422a18077bcdaa05bf9415d2bd29cd760d
             tag: 'task1',
             comment: 'task1',
             creation: new Date('2000-01-01'),
@@ -85,11 +69,7 @@ export class TasksService  {
 
     async updateTask(task:Task): Promise<Task> {
         const srchTask = TasksService.tasks.find(
-<<<<<<< HEAD
             (t) =>t._id===task._id,
-=======
-            (t) =>t.tag===task.tag,
->>>>>>> 43dbc8422a18077bcdaa05bf9415d2bd29cd760d
         )
         if(!srchTask) {
             throw new Error('Task not found');
