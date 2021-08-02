@@ -21,9 +21,6 @@ export class TaskByTagInputRequest {
 export class CreateTaskInputRequest {
 
   @Field()
-  @IsNumber()
-  readonly _id: number;
-  @Field()
   @IsString()
   readonly tag: string;
   @Field()

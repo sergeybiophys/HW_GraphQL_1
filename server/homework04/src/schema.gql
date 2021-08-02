@@ -38,7 +38,6 @@ type Mutation {
 }
 
 input CreateTaskInputRequest {
-  _id: Float!
   tag: String!
   comment: String!
   creation: DateTime!
@@ -48,11 +47,11 @@ input CreateTaskInputRequest {
 }
 
 input UpdateTaskInputRequest {
-  _id: Float!
   tag: String!
   comment: String!
   creation: DateTime!
   deadline: DateTime!
   priority: Float!
   status: String!
+  _id: Float!
 }

@@ -37,7 +37,7 @@ document.getElementById('send-query').addEventListener('click', ()=> {
 document.getElementById('create-btn').addEventListener('click', ()=>{
   console.log('create');
   createTask();
-
+  get();
 })
 
 document.getElementById('update-btn').addEventListener('click', ()=>{
@@ -109,6 +109,7 @@ function getByTag(tag: string) {
 
 function createTask(){
 
+  (<HTMLInputElement>document.getElementById('deadline-select-up')).value = Date.now().toString();
   let tag = (<HTMLInputElement>document.getElementById('tag-select')).value;
     let comment = (<HTMLInputElement>document.getElementById('comment-select')).value;
     let deadline = (<HTMLInputElement>document.getElementById('deadline-select')).value;
@@ -147,7 +148,11 @@ function createTask(){
     }
 
     }).then((result:AxiosResponse) => {
-        console.log(result.data.data.getAllTasks)
+        
+      (<HTMLInputElement>document.getElementById('form-id')).innerText='';
+      (<HTMLInputElement>document.getElementById('tag-select')).value='';
+      (<HTMLInputElement>document.getElementById('comment-select')).value='';
+      // (<HTMLInputElement>document.getElementById('deadline-select-up')).value = Date.now().toString();
      
           console.log(result.data.data.createNewTask);
           // get();
@@ -157,6 +162,9 @@ function createTask(){
 
 function clickUpdate(id:number){
   (<HTMLInputElement>document.getElementById('form-id')).innerText="";
+  (<HTMLInputElement>document.getElementById('tag-select')).value='';
+  (<HTMLInputElement>document.getElementById('comment-select')).value='';
+
   document.getElementById('fill-data-task').style.display='none';
   document.getElementById('form-id').innerText=id.toString();
   document.getElementById('fill-data-task-up').style.display = 'block';
@@ -209,6 +217,7 @@ let id = (<HTMLInputElement>document.getElementById('form-id')).innerText;
       (<HTMLInputElement>document.getElementById('form-id')).innerText='';
      (<HTMLInputElement>document.getElementById('tag-select')).value='';
      (<HTMLInputElement>document.getElementById('comment-select')).value='';
+
       document.getElementById('fill-data-task').style.display='block';
       document.getElementById('fill-data-task-up').style.display = 'none';
       get();
